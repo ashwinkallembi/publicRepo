@@ -1,0 +1,42 @@
+package testScripts;
+import org.openqa.selenium.WebDriver;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+
+import pageObjects.pageLogin;
+import resources.base;
+public class testSignUp extends base {
+public WebDriver driver;
+	@BeforeTest
+	public void preCondition()
+	{
+		driver=initializeDriver();
+			}
+		
+	@Test(groups= {"smoke"})
+	public void testSignUpSap() throws InterruptedException
+	{
+		
+		driver.get(base.getUrl("url"));
+		pageLogin pl=new pageLogin(driver);
+		pl.clickSignUpButton();
+		pl.switchToFrame();
+		pl.enterFirstNmae();
+		pl.enterLastNmae();
+		pl.enterMail();
+		pl.enterPwd();
+		pl.enterRePwd();
+		pl.checkBox1Click();
+		pl.checkbox2Click();
+		pl.clickRegisterButton();
+		pl.waitSucessMessage();
+		}
+
+	
+	@AfterTest
+	public void afterCondition()
+	{
+	//	discardDriver(driver);
+		}
+	}
